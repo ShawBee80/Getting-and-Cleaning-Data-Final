@@ -32,21 +32,21 @@ Replace all "C:/Users/Matt/Desktop/Data Science/Files/datasciencecoursera/Course
 
 # Read files into dplyr tables
 
-# First, read the train tables into R
+## First, read the train tables into R
   X_train <- tbl_df(read.table(paste(DataPath, "/train/X_train.txt", sep = "")))
   
   Y_train <- tbl_df(read.table(paste(DataPath, "/train/Y_train.txt", sep = "")))
   
   Subject_train <- tbl_df(read.table(paste(DataPath, "/train/subject_train.txt", sep = "")))
 
-# Next, read the test tables into R
+## Next, read the test tables into R
   X_test <- tbl_df(read.table(paste(DataPath, "/test/X_test.txt", sep = "")))
   
   Y_test <- tbl_df(read.table(paste(DataPath, "/test/Y_test.txt", sep = "")))
   
   Subject_test <- tbl_df(read.table(paste(DataPath, "/test/subject_test.txt", sep = "")))
 
-# Next, read features and activity labels
+## Next, read features and activity labels
   Features <- tbl_df(read.table(paste(DataPath, "/features.txt", sep = "")))
   
   Activity_labels <- tbl_df(read.table(paste(DataPath, "/activity_labels.txt", sep = "")))
