@@ -1,10 +1,13 @@
 # Open R packages
 library(dplry)
+
 library(tidyr)
 
 
 # Download file from link
   FinalUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
+  
+# Find working directory
   getwd()
 ## "C:/Users/Matt/Desktop/Data Science/Files/datasciencecoursera/Course 3 Final"
 
