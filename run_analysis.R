@@ -1,3 +1,8 @@
+# Open R packages
+library(dplry)
+library(tidyr)
+
+
 # Download file from link
   FinalUrl <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
   getwd()
@@ -19,27 +24,28 @@
 # View "Files"
   Files
 
+# Read files into dplyr tables
 
 # First, read the train tables into R
-  Xtrain <- read.table(file.path(DataPath, "train", "X_train.txt"), header = FALSE)
-  Ytrain <- read.table(file.path(DataPath, "train", "Y_train.txt"), header = FALSE)
-  Subject_train <- read.table(file.path(DataPath, "train", "subject_train.txt"), header = FALSE)
+  X_train <- tbl_df(read.table(paste(DataPath, "/train/X_train.txt", sep = "")))
+  Y_train <- tbl_df(read.table(paste(DataPath, "/train/Y_train.txt", sep = "")))
+  Subject_train <- tbl_df(read.table(paste(DataPath, "/train/subject_train.txt", sep = "")))
 
 # Next, read the test tables into R
-  Xtest <- read.table(file.path(DataPath, "test", "X_test.txt"), header = FALSE)
-  Ytest <- read.table(file.path(DataPath, "test", "Y_test.txt"), header = FALSE)
-  Subject_test <- read.table(file.path(DataPath, "test", "subject_test.txt"), header = FALSE)
+  X_test <- tbl_df(read.table(paste(DataPath, "/test/X_test.txt", sep = "")))
+  Y_test <- tbl_df(read.table(paste(DataPath, "/test/Y_test.txt", sep = "")))
+  Subject_test <- tbl_df(read.table(paste(DataPath, "/test/subject_test.txt", sep = "")))
 
 # Next, read features and activity labels
-  Features <- read.table(file.path(DataPath, "features.txt"), header = FALSE)
-  Activity_labels <- read.table(file.path(DataPath, "activity_labels.txt"), header = FALSE)
+  Features <- tbl_df(read.table(paste(DataPath, "/features.txt", sep = "")))
+  Activity_labels <- tbl_df(read.table(paste(DataPath, "/activity_labels.txt", sep = "")))
 
 # Create values 
-  colnames(Xtrain) = Features[, 2]
-  colnames(Ytrain) = "activityId"
+  colnames(X_train) = Features[, 2]
+  colnames(Y_train) = "activityId"
   colnames(Subject_train) = "subjectId"
-  colnames(Xtest) = Features[, 2]
-  colnames(Ytest) = "activityId"
+  colnames(X_test) = Features[, 2]
+  colnames(Y_test) = "activityId"
   colnames(Subject_test) = "subjectId"
   colnames(Activity_labels) <- c("activityId", "activityType")
 
@@ -48,8 +54,8 @@
 
 # Step 1
 # Merge the training and the test sets to create one data set.
-  Merge_train <- cbind(Ytrain, Subject_train, Xtrain)
-  Merge_test <- cbind(Ytest, Subject_test, Xtest)
+  Merge_train <- cbind(Y_train, Subject_train, X_train)
+  Merge_test <- cbind(Y_test, Subject_test, X_test)
   Main_data_table <- rbind(Merge_train, Merge_test)
 
 # Step 2
